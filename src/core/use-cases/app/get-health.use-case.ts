@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Health } from '../entities/Health';
+import { Health } from '../../entities/Health';
 
 @Injectable()
 export class GetHealthUseCase {
