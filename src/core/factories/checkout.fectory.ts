@@ -22,6 +22,7 @@ export class MakePaymentFactory implements ICheckoutFectory {
       amount: request.amount,
       paymentLink: 'http://payment-link.com',
       status: 'pending',
+      paid: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     });

@@ -7,6 +7,7 @@ abstract class ACheckout {
   abstract amount: number;
   abstract paymentLink: string;
   abstract status: string;
+  abstract paid: boolean;
   abstract createdAt: Date;
   abstract updatedAt: Date;
 }
@@ -18,6 +19,7 @@ export class Checkout implements ACheckout {
   amount: number;
   paymentLink: string;
   status: string;
+  paid: boolean;
   createdAt: Date;
   updatedAt: Date;
 
@@ -71,6 +73,14 @@ export class Checkout implements ACheckout {
 
   set setStatus(status: string) {
     this.status = status;
+  }
+
+  get getPaid(): boolean {
+    return this.paid;
+  }
+
+  set setPaid(paid: boolean) {
+    this.paid = paid;
   }
 
   get getCreatedAt(): Date {
