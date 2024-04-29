@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { MakePaymentInputDto } from 'src/presentation/api/views/checkout/make-payment.input.dto';
-import { MakePaymentFactory } from 'src/core/factories/checkout.fectory';
-import { Checkout } from 'src/core/entities/Checkout';
+import { MakePaymentInputDto } from '@/presentation/api/views/checkout/make-payment.input.dto';
+import { MakePaymentFactory } from '@/core/factories/checkout.fectory';
+import { Checkout } from '@/core/entities/Checkout';
 
 @Injectable()
 export class MakePaymentUseCase {

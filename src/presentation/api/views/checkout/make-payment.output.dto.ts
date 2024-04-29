@@ -1,4 +1,4 @@
-import { Checkout } from 'src/core/entities/Checkout';
+import { Checkout } from '@/core/entities/Checkout';
 
 export class MakePaymentOutputDto {
   orderId: string;

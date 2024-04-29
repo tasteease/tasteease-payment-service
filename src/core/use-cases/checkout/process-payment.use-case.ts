@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ProcessPaymentInputDto } from 'src/presentation/api/views/checkout/process-payment.input.dto';
+import { ProcessPaymentInputDto } from '@/presentation/api/views/checkout/process-payment.input.dto';
 
 @Injectable()
 export class ProcessPaymentUseCase {

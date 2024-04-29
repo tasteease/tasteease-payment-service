@@ -1,10 +1,10 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { MakePaymentUseCase } from 'src/core/use-cases/checkout/make-payment.use-case';
+import { MakePaymentUseCase } from '@/core/use-cases/checkout/make-payment.use-case';
 import { MakePaymentInputDto } from '../../views/checkout/make-payment.input.dto';
 import { MakePaymentOutputDto } from '../../views/checkout/make-payment.output.dto';
 import { MakePaymentResponseView } from '../../views/checkout/make-payment.response';
 import { ProcessPaymentInputDto } from '../../views/checkout/process-payment.input.dto';
-import { ProcessPaymentUseCase } from 'src/core/use-cases/checkout/process-payment.use-case';
+import { ProcessPaymentUseCase } from '@/core/use-cases/checkout/process-payment.use-case';
 import { ProcessPaymentResponseView } from '../../views/checkout/process-payment.response';
 
 @Controller('checkout')
