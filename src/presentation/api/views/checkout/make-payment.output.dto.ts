@@ -5,7 +5,7 @@ export class MakePaymentOutputDto {
   paymentLink: string;
 
   constructor(checkout: Checkout) {
-    this.orderId = checkout.id;
+    this.orderId = `ORDER_ID-${checkout.id}`;
     this.paymentLink = checkout.paymentLink;
   }
 }

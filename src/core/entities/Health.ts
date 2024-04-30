@@ -1,9 +1,13 @@
-abstract class AHealth {
+import { UUID } from 'crypto';
+
+export abstract class AHealth {
+  abstract id: UUID;
   abstract status: string;
   abstract version: string;
 }
 
 export class Health implements AHealth {
+  id: UUID;
   status: string;
   version: string;
 

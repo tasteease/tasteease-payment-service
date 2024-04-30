@@ -1,6 +1,6 @@
 import { UUID } from 'crypto';
 
-abstract class ACheckout {
+export abstract class ACheckout {
   abstract id: UUID;
   abstract paymentId: UUID;
   abstract clientId: UUID;
