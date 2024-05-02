@@ -1,11 +1,11 @@
-import { ACheckout } from '@/core/entities/Checkout';
+/* import { ACheckout } from '@/core/entities/Checkout'; */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UUID } from 'crypto';
 
-export type Checkoutcument = Checkout & Document;
+export type CheckoutDocument = Checkout & Document;
 
 @Schema()
-export class Checkout implements ACheckout {
+export class Checkout /* implements ACheckout */ {
   @Prop({ required: true, unique: true })
   id: UUID;
 

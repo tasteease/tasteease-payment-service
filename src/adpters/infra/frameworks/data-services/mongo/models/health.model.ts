@@ -1,11 +1,11 @@
-import { AHealth } from '@/core/entities/Health';
+/* import { AHealth } from '@/core/entities/Health'; */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UUID } from 'crypto';
 
 export type HealthDocument = Health & Document;
 
 @Schema()
-export class Health implements AHealth {
+export class Health /* implements AHealth */ {
   @Prop({ required: true })
   id: UUID;
 

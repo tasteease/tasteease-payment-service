@@ -6,9 +6,16 @@ import { CheckoutController } from './presentation/api/controllers/checkout/chec
 import { MakePaymentUseCase } from './core/use-cases/checkout/make-payment.use-case';
 import { MakePaymentFactory } from './core/factories/checkout.fectory';
 import { ProcessPaymentUseCase } from './core/use-cases/checkout/process-payment.use-case';
+import { DataServicesModule } from './adpters/infra/services/data-services/data-service.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    DataServicesModule,
+  ],
   controllers: [AppController, CheckoutController],
   providers: [
     AppService,
