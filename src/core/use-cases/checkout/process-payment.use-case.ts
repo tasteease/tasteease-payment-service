@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ProcessPaymentInputDto } from '@/presentation/api/views/checkout/process-payment.input.dto';
+/* import { IDataServices } from '@/core/abstracts/data-services.abstract'; */
 
 @Injectable()
 export class ProcessPaymentUseCase {
-  constructor(/* private readonly checkoutRepository: CheckoutRepository */) {}
+  constructor(/* private readonly dataServices: IDataServices */) {}
 
   async execute(
     processPaymentInputDto: ProcessPaymentInputDto,

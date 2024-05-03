@@ -3,14 +3,16 @@ import { MakePaymentFactory } from '@/core/factories/checkout.fectory';
 import { MakePaymentInputDto } from '../../../presentation/api/views/checkout/make-payment.input.dto';
 import { Checkout } from '@/core/entities/Checkout';
 import { randomUUID } from 'crypto';
+import { IDataServices } from '@/core/abstracts/data-services.abstract';
 
 describe('MakePaymentUseCase', () => {
   let useCase: MakePaymentUseCase;
   let makePaymentFactory: MakePaymentFactory;
+  let dataServices: IDataServices;
 
   beforeEach(() => {
     makePaymentFactory = new MakePaymentFactory();
-    useCase = new MakePaymentUseCase(makePaymentFactory);
+    useCase = new MakePaymentUseCase(dataServices, makePaymentFactory);
   });
 
   describe('GIVEN new instance of Make Payment use case', () => {
