@@ -41,7 +41,7 @@ describe('CheckoutController', () => {
       it('SHOULD make a payment successfully', async () => {
         jest.spyOn(makePaymentUseCase, 'execute').mockResolvedValue(
           new Checkout({
-            id: 'ee436e51-12b3-4094-bad5-3dbed3734f59',
+            orderId: 'ee436e51-12b3-4094-bad5-3dbed3734f59',
             amount: 100,
             clientId: makePaymentInput.clientId,
             paymentId: makePaymentInput.paymentId,

@@ -1,31 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { ProcessPaymentInputDto } from '@/presentation/api/views/checkout/process-payment.input.dto';
-/* import { IDataServices } from '@/core/abstracts/data-services.abstract'; */
+import { IDataServices } from '@/core/abstracts/data-services.abstract';
 
 @Injectable()
 export class ProcessPaymentUseCase {
-  constructor(/* private readonly dataServices: IDataServices */) {}
+  constructor(private readonly dataServices: IDataServices) {}
 
   async execute(
     processPaymentInputDto: ProcessPaymentInputDto,
   ): Promise<boolean> {
-    console.log('Processing payment...');
-    console.log(processPaymentInputDto);
-    // get existing checkout
-    // const checkout = await this.checkoutRepository.getCheckoutById(processPaymentInputDto.id);
+    const orderId = processPaymentInputDto.reference.split('ORDER_ID-')[1];
 
-    // if (!checkout) {
-    //   throw new Error('Checkout not found');
-    // }
+    const checkouts = await this.dataServices.checkouts.getAll();
+    const checkout = checkouts.find((checkout) => checkout.orderId === orderId);
 
-    // if (checkout.paid) {
-    //   throw new Error('Checkout already paid');
-    // }
+    if (!checkout) throw new Error('Checkout not found');
 
-    // if (processPaymentInputDto.paid) {
-    //   checkout.paid = processPaymentInputDto.paid;
-    //   checkout.paidDate = processPaymentInputDto.paidDate; // set paid date
-    // }
+    if (checkout.paid) throw new Error('Checkout already paid');
+
+    if (processPaymentInputDto.paid) {
+      checkout.status = 'paid';
+      checkout.paid = processPaymentInputDto.paid;
+      checkout.updatedAt = processPaymentInputDto.paidDate;
+    }
+
+    await this.dataServices.checkouts.update(orderId, checkout);
 
     return new Promise((resolve) => {
       resolve(true);

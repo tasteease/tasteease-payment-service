@@ -20,7 +20,7 @@ describe('MakePaymentFactory', () => {
       const checkout = factory.createCheckout(request);
 
       expect(checkout).toBeInstanceOf(Checkout);
-      expect(checkout.id).toBeDefined();
+      expect(checkout.orderId).toBeDefined();
       expect(checkout.paymentId).toBe(request.paymentId);
       expect(checkout.clientId).toBe(request.clientId);
       expect(checkout.amount).toBe(request.amount);

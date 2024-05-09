@@ -14,8 +14,10 @@ export class MongoGenericRepository<T> implements ARepository<T> {
     return this._repository.find().populate(this._populateOnFind).exec();
   }
 
-  get(id: any): Promise<T> {
-    return this._repository.findById(id).populate(this._populateOnFind).exec();
+  get(id: string): Promise<T> {
+    return this._repository.findOne({
+      orderId: id,
+    });
   }
 
   create(item: T): Promise<T> {
@@ -23,6 +25,6 @@ export class MongoGenericRepository<T> implements ARepository<T> {
   }
 
   update(id: string, item: T) {
-    return this._repository.findByIdAndUpdate(id, item);
+    return this._repository.updateOne({ orderId: id }, item);
   }
 }

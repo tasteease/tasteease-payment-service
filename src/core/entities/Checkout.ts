@@ -1,9 +1,7 @@
-import { UUID } from 'crypto';
-
 export class Checkout {
-  id: UUID;
-  paymentId: UUID;
-  clientId: UUID;
+  orderId: string;
+  paymentId: string;
+  clientId: string;
   amount: number;
   paymentLink: string;
   status: string;

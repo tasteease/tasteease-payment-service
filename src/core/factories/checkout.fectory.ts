@@ -16,7 +16,7 @@ export interface ICheckoutFectory {
 export class MakePaymentFactory implements ICheckoutFectory {
   createCheckout(request: makePaymentResquest): Checkout {
     return new Checkout({
-      id: randomUUID(),
+      orderId: randomUUID(),
       paymentId: request.paymentId,
       clientId: request.clientId,
       amount: request.amount,

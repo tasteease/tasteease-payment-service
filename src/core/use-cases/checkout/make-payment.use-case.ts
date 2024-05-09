@@ -15,13 +15,6 @@ export class MakePaymentUseCase {
     const checkout =
       this.makePaymentFactory.createCheckout(makePaymentInputDto);
 
-    // get external service to payment link
-    // await this.paymentService.getPaymentLink(checkout);
-
-    //set payment link to checkout
-    // checkout.paymentLink = paymentLink;
-
-    // save checkout
     await this.dataServices.checkouts.create(checkout);
 
     return new Promise((resolve) => {

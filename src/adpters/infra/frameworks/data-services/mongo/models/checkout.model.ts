@@ -1,24 +1,23 @@
 /* import { ACheckout } from '@/core/entities/Checkout'; */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { UUID } from 'crypto';
 
 export type CheckoutDocument = Checkout & Document;
 
 @Schema()
 export class Checkout /* implements ACheckout */ {
-  @Prop({ required: true, unique: true })
-  id: UUID;
+  @Prop({ type: String, required: true, unique: true })
+  orderId: string;
 
   @Prop({ required: true })
-  paymentId: UUID;
+  paymentId: string;
 
   @Prop({ required: true })
-  clientId: UUID;
+  clientId: string;
 
-  @Prop({ required: true, default: 0 })
+  @Prop({ required: true })
   amount: number;
 
-  @Prop({ required: true, default: '' })
+  @Prop({ required: true })
   paymentLink: string;
 
   @Prop({ required: true, default: 'pending' })

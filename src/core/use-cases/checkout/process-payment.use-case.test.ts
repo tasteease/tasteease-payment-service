@@ -1,11 +1,13 @@
 import { ProcessPaymentUseCase } from './process-payment.use-case';
 import { ProcessPaymentInputDto } from '../../../presentation/api/views/checkout/process-payment.input.dto';
+import { IDataServices } from '@/core/abstracts/data-services.abstract';
 
 describe('ProcessPaymentUseCase', () => {
   let useCase: ProcessPaymentUseCase;
+  let dataServices: IDataServices;
 
   beforeEach(() => {
-    useCase = new ProcessPaymentUseCase();
+    useCase = new ProcessPaymentUseCase(dataServices);
   });
 
   describe('GIVEN new instance of Process Payment use case', () => {
