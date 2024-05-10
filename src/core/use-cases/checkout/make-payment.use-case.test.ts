@@ -8,7 +8,20 @@ import { IDataServices } from '@/core/abstracts/data-services.abstract';
 describe('MakePaymentUseCase', () => {
   let useCase: MakePaymentUseCase;
   let makePaymentFactory: MakePaymentFactory;
-  let dataServices: IDataServices;
+  const dataServices: IDataServices = {
+    checkouts: {
+      create: jest.fn(),
+      update: jest.fn(),
+      get: jest.fn(),
+      getAll: jest.fn(),
+    },
+    healths: {
+      create: jest.fn(),
+      update: jest.fn(),
+      get: jest.fn(),
+      getAll: jest.fn(),
+    },
+  };
 
   beforeEach(() => {
     makePaymentFactory = new MakePaymentFactory();
