@@ -11,7 +11,7 @@ jest.mock('@nestjs/core', () => ({
 }));
 
 describe('main', () => {
-  describe('bootstrap', () => {
+  describe('GIVEN boostrap function', () => {
     it('should create an app and listen on port 3000', async () => {
       await bootstrap();
 
