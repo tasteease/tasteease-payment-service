@@ -15,6 +15,6 @@ import { GetHealthUseCase } from './core/use-cases/app/get-health.use-case';
     CheckoutUseCasesModule,
   ],
   controllers: [AppController, CheckoutController],
-  providers: [GetHealthUseCase],
+  providers: [GetHealthUseCase, CheckoutUseCasesModule],
 })
 export class AppModule {}
