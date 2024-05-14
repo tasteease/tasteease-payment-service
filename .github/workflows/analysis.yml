@@ -1,4 +1,4 @@
-name: Ci
+name: CI
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 
 jobs:
   test:
+    name: Run test to Quality Gate
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -47,8 +48,3 @@ jobs:
 
       - name: Run tests
         run: pnpm test
-      #- name: SonarCloud Scan
-      #uses: sonarsource/sonarcloud-github-action@master
-      #env:
-      #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
