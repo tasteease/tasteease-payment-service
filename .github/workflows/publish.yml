@@ -32,3 +32,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            CLEAN_NEST_MONGO_CONNECTION_STRING=${{ secrets.CLEAN_NEST_MONGO_CONNECTION_STRING }}
