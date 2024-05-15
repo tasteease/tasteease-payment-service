@@ -6,6 +6,7 @@ import { MakePaymentResponseView } from '../../views/checkout/make-payment.respo
 import { ProcessPaymentInputDto } from '../../views/checkout/process-payment.input.dto';
 import { ProcessPaymentUseCase } from '@/core/use-cases/checkout/process-payment.use-case';
 import { ProcessPaymentResponseView } from '../../views/checkout/process-payment.response';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('checkout')
 export class CheckoutController {
@@ -14,6 +15,18 @@ export class CheckoutController {
     private readonly processPaymentUseCase: ProcessPaymentUseCase,
   ) {}
 
+  @ApiOperation({ summary: 'Make payment' })
+  @ApiResponse({
+    status: 200,
+    description: 'Payment successful',
+    type: MakePaymentResponseView,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Payment failed',
+    type: MakePaymentResponseView,
+  })
+  @ApiTags('Checkout')
   @Post('pay')
   async pay(@Body() body: MakePaymentInputDto): Promise<any> {
     try {
@@ -33,6 +46,18 @@ export class CheckoutController {
     }
   }
 
+  @ApiOperation({ summary: 'Process payment' })
+  @ApiResponse({
+    status: 200,
+    description: 'Payment processed successfully',
+    type: ProcessPaymentResponseView,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Payment processing failed',
+    type: ProcessPaymentResponseView,
+  })
+  @ApiTags('Checkout')
   @Post('process')
   async process(@Body() body: ProcessPaymentInputDto): Promise<any> {
     try {
