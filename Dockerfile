@@ -5,6 +5,10 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
+ARG CLEAN_NEST_MONGO_CONNECTION_STRING
+
+ENV CLEAN_NEST_MONGO_CONNECTION_STRING=$CLEAN_NEST_MONGO_CONNECTION_STRING
+
 FROM base AS prod-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
@@ -15,5 +19,9 @@ RUN pnpm run build
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
+
+RUN adduser -D nonroot
+USER nonroot
+
 EXPOSE 3000
 CMD [ "pnpm", "start" ]
