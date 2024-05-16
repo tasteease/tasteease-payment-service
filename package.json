@@ -80,6 +80,12 @@
       "@adapters/(.*)": "<rootDir>/adapters/$1",
       "@core/(.*)": "<rootDir>/core/$1",
       "@presentation/(.*)": "<rootDir>/presentation/$1"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "./src/main.ts",
+      "./*\\.module\\.ts"
+    ]
   }
 }
