@@ -1,4 +1,6 @@
 FROM node:20-slim AS base
+
+RUN adduser --system --group --no-create-home nonroot
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -20,8 +22,6 @@ FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 
-RUN adduser -D nonroot
-USER nonroot
-
 EXPOSE 3000
+USER nonroot
 CMD [ "pnpm", "start" ]
