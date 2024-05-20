@@ -5,6 +5,7 @@ import { DataServicesModule } from './adpters/infra/services/data-services/data-
 import { ConfigModule } from '@nestjs/config';
 import { CheckoutUseCasesModule } from './core/use-cases/checkout/checkout-use-cases.module';
 import { GetHealthUseCase } from './core/use-cases/app/get-health.use-case';
+import { HttpServicesModule } from './adpters/infra/services/external-http-services/http-services.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { GetHealthUseCase } from './core/use-cases/app/get-health.use-case';
       isGlobal: true,
     }),
     DataServicesModule,
+    HttpServicesModule,
     CheckoutUseCasesModule,
   ],
   controllers: [AppController, CheckoutController],
