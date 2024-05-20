@@ -36,7 +36,9 @@ describe('ProcessPaymentUseCase', () => {
 
   const httpClientServices: IHttpClientServices = {
     get: jest.fn(),
-    post: jest.fn(),
+    post: jest.fn().mockResolvedValue({
+      data: { message: 'Payment processed successfully' },
+    }),
   };
 
   beforeEach(() => {
