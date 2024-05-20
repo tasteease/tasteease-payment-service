@@ -30,15 +30,14 @@ export class ProcessPaymentUseCase {
       checkout.updatedAt = processPaymentInputDto.paidDate;
     }
 
-    const retornodachamadacore = await this.httpClientServices.post(
+    const externalCoreHttpResponse = await this.httpClientServices.post(
       `order/${orderId}/status`,
       {
         status: EOrderStatus.Paid,
       },
     );
 
-    console.log('retornodachamadacore', retornodachamadacore);
-    if (!retornodachamadacore) throw new Error('Error on core service');
+    if (!externalCoreHttpResponse) throw new Error('Error on core service');
 
     await this.dataServices.checkouts.update(orderId, checkout);
 

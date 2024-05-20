@@ -9,6 +9,7 @@ import { ProcessPaymentInputDto } from '../../views/checkout/process-payment.inp
 import { IDataServices } from '@/core/abstracts/data-services.abstract';
 import { MakePaymentResponseView } from '../../views/checkout/make-payment.response';
 import { MakePaymentOutputDto } from '../../views/checkout/make-payment.output.dto';
+import { IHttpClientServices } from '@/core/abstracts/http-client.abstract';
 
 describe('CheckoutController', () => {
   let checkOutController: CheckoutController;
@@ -45,6 +46,13 @@ describe('CheckoutController', () => {
       },
     };
 
+    const httpClientService: IHttpClientServices = {
+      get: jest.fn(),
+      post: jest.fn().mockResolvedValue({
+        data: { message: 'Payment processed successfully' },
+      }),
+    };
+
     const makePaymentFactory: MakePaymentFactory = {
       createCheckout: jest.fn(),
     };
@@ -54,7 +62,10 @@ describe('CheckoutController', () => {
       makePaymentFactory,
     );
 
-    processPaymentUseCase = new ProcessPaymentUseCase(dataServices);
+    processPaymentUseCase = new ProcessPaymentUseCase(
+      dataServices,
+      httpClientService,
+    );
 
     checkOutController = new CheckoutController(
       makePaymentUseCase,
@@ -196,7 +207,15 @@ describe('CheckoutController', () => {
         },
       };
 
-      processPaymentUseCase = new ProcessPaymentUseCase(dataServices);
+      const httpClientService: IHttpClientServices = {
+        get: jest.fn(),
+        post: jest.fn(),
+      };
+
+      processPaymentUseCase = new ProcessPaymentUseCase(
+        dataServices,
+        httpClientService,
+      );
 
       checkOutController = new CheckoutController(
         makePaymentUseCase,
