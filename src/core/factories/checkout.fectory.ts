@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Checkout } from '../entities/Checkout';
 
-import { UUID, randomUUID } from 'crypto';
+import { UUID } from 'crypto';
 export interface makePaymentResquest {
   paymentId: UUID;
   clientId: UUID;
@@ -16,7 +16,7 @@ export interface ICheckoutFectory {
 export class MakePaymentFactory implements ICheckoutFectory {
   createCheckout(request: makePaymentResquest): Checkout {
     return new Checkout({
-      orderId: randomUUID(),
+      orderId: request.paymentId,
       paymentId: request.paymentId,
       clientId: request.clientId,
       amount: request.amount,

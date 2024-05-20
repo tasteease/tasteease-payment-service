@@ -1,6 +1,7 @@
 import { ProcessPaymentUseCase } from './process-payment.use-case';
 import { ProcessPaymentInputDto } from '../../../presentation/api/views/checkout/process-payment.input.dto';
 import { IDataServices } from '@/core/abstracts/data-services.abstract';
+import { IHttpClientServices } from '@/core/abstracts/http-client.abstract';
 
 describe('ProcessPaymentUseCase', () => {
   let useCase: ProcessPaymentUseCase;
@@ -33,8 +34,13 @@ describe('ProcessPaymentUseCase', () => {
     },
   };
 
+  const httpClientServices: IHttpClientServices = {
+    get: jest.fn(),
+    post: jest.fn(),
+  };
+
   beforeEach(() => {
-    useCase = new ProcessPaymentUseCase(dataServices);
+    useCase = new ProcessPaymentUseCase(dataServices, httpClientServices);
   });
 
   describe('GIVEN new instance of Process Payment use case', () => {

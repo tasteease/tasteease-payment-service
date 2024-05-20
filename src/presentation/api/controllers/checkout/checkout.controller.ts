@@ -61,13 +61,16 @@ export class CheckoutController {
   @Post('process')
   async process(@Body() body: ProcessPaymentInputDto): Promise<any> {
     try {
-      if (await this.processPaymentUseCase.execute(body))
+      const respostadoexecute = await this.processPaymentUseCase.execute(body);
+
+      if (respostadoexecute)
         return new ProcessPaymentResponseView<{ message: string }>({
           error: false,
           message: 'Payment processement',
           data: { message: 'Payment processed successfully' },
         });
     } catch (error) {
+      console.log('error', error.response.data);
       return new MakePaymentResponseView({
         error: true,
         message: error.message,
