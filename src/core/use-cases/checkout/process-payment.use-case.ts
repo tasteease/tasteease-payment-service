@@ -1,14 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ProcessPaymentInputDto } from '@/presentation/api/views/checkout/process-payment.input.dto';
 import { IDataServices } from '@/core/abstracts/data-services.abstract';
 import { IHttpClientServices } from '@/core/abstracts/http-client.abstract';
 import { EOrderStatus } from '@/core/enums/order-status.enum';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class ProcessPaymentUseCase {
   constructor(
     private readonly dataServices: IDataServices,
     private readonly httpClientServices: IHttpClientServices,
+    @Inject('PAYMENT_SERVICE') private readonly rmqClient: ClientProxy,
   ) {}
 
   async execute(
@@ -40,6 +42,11 @@ export class ProcessPaymentUseCase {
     if (!externalCoreHttpResponse) throw new Error('Error on core service');
 
     await this.dataServices.checkouts.update(orderId, checkout);
+
+    this.rmqClient.emit('payment_status', {
+      orderId,
+      status: EOrderStatus.Paid,
+    });
 
     return new Promise((resolve) => {
       resolve(true);
